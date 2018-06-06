@@ -1,0 +1,11 @@
+{
+  "name": "the-bid-bids",
+  "version": "0.1.0",
+  "description": "This is a microservice accociated with The Bid that handles bids",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint npm run unit"
+  },
+  "author": "bialesdaniel@gmail.com",
+  "license": "MIT"
+}
