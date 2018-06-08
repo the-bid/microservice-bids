@@ -1,0 +1,10 @@
+# import Bid from '../generated/prisma.graphql'
+
+type Query {
+  highestBid(auctionId: ID!,userId: ID!, teamId: ID!): Bid!
+}
+
+type Mutation {
+  createBid(auctionId: ID!, teamId: ID!, amount: Float!): Bid!
+  deleteBid(id: ID!): Bid!
+}

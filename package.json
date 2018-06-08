@@ -4,8 +4,50 @@
   "description": "This is a microservice accociated with The Bid that handles bids",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint npm run unit"
+    "lint": "eslint . --fix --ignore-path .gitignore --ignore-pattern '!.eslintrc.js'",
+    "test": "npm run lint && npm run unit",
+    "unit": "jest",
+    "coverage": "jest --coverage",
+    "start": "nodemon -r dotenv/config src/index.js",
+    "start:dev": "npm-run-all -pl start playground ",
+    "start:prod": "node src/index.js",
+    "deploy:db": "prisma deploy -e .env",
+    "start:db": "docker-compose -f deployment/docker-compose.yml up -d",
+    "stop:db": "docker-compose -f deployment/docker-compose.yml stop",
+    "playground": "graphql playground --port 3004"
   },
   "author": "bialesdaniel@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.14.7",
+    "jsonwebtoken": "^8.2.2",
+    "lodash": "^4.17.10",
+    "prisma-binding": "^2.0.2"
+  },
+  "devDependencies": {
+    "casual": "^1.5.19",
+    "dotenv": "^6.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-security": "^1.4.0",
+    "graphql": "^0.13.2",
+    "graphql-import": "^0.6.0",
+    "jest": "^23.1.0",
+    "nodemon": "^1.17.5",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.13.4"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 120,
+    "singleQuote": true
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/test",
+      "<rootDir>/config"
+    ]
+  }
 }

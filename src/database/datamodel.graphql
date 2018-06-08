@@ -1,0 +1,8 @@
+type Bid {
+  id: ID! @unique
+  createdAt: DateTime!
+  userId: String!
+  auctionId: String!
+  teamId: String!
+  amount: Float!
+}
