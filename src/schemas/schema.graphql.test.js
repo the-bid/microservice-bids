@@ -37,24 +37,20 @@ describe('Schema', () => {
         expect(data.highestBid).toMatchObject(bidObjectTemplate)
       })
       test('returns a GraphQLError for missing  required fields', async () => {
-        expect.assertions(3)
+        expect.assertions(1)
         const query = `query highestBid{
           highestBid{
             id
           }
         }`
         const result = await graphql(schema, query)
-        expect(result).toHaveProperty('errors')
-        expect(result.errors).toEqual(
+        expect(result).toHaveProperty(
+          'errors',
           expect.arrayContaining([
             expect.objectContaining(missingFieldErrorMessage({ method: 'highestBid', field: 'auctionId', type: 'ID' })),
             expect.objectContaining(missingFieldErrorMessage({ method: 'highestBid', field: 'userId', type: 'ID' })),
             expect.objectContaining(missingFieldErrorMessage({ method: 'highestBid', field: 'teamId', type: 'ID' }))
           ])
-        )
-        expect(result.errors[0]).toHaveProperty(
-          'message',
-          'Field "highestBid" argument "auctionId" of type "ID!" is required but not provided.'
         )
       })
     })
@@ -77,7 +73,7 @@ describe('Schema', () => {
         expect(data.createBid).toMatchObject(bidObjectTemplate)
       })
       test('returns a GraphQLError for missing  required fields', async () => {
-        expect.assertions(2)
+        expect.assertions(1)
         const mutation = `mutation createBid{
           createBid{
             id
@@ -89,8 +85,8 @@ describe('Schema', () => {
           }
         }`
         const result = await graphql(schema, mutation)
-        expect(result).toHaveProperty('errors')
-        expect(result.errors).toEqual(
+        expect(result).toHaveProperty(
+          'errors',
           expect.arrayContaining([
             expect.objectContaining(missingFieldErrorMessage({ method: 'createBid', field: 'auctionId', type: 'ID' })),
             expect.objectContaining(missingFieldErrorMessage({ method: 'createBid', field: 'teamId', type: 'ID' })),
@@ -116,7 +112,7 @@ describe('Schema', () => {
         expect(data.deleteBid).toMatchObject(bidObjectTemplate)
       })
       test('returns a GraphQLError for missing  required fields', async () => {
-        expect.assertions(2)
+        expect.assertions(1)
         const mutation = `mutation deleteBid{
           deleteBid{
             id
@@ -128,8 +124,8 @@ describe('Schema', () => {
           }
         }`
         const result = await graphql(schema, mutation)
-        expect(result).toHaveProperty('errors')
-        expect(result.errors).toEqual(
+        expect(result).toHaveProperty(
+          'errors',
           expect.arrayContaining([
             expect.objectContaining(missingFieldErrorMessage({ method: 'deleteBid', field: 'id', type: 'ID' }))
           ])
