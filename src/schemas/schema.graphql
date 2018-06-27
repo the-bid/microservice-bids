@@ -1,7 +1,7 @@
 # import Bid from '../generated/prisma.graphql'
 
 type Query {
-  highestBid(auctionId: ID!,userId: ID!, teamId: ID!): Bid!
+  highestBid(auctionId: ID!, teamId: ID!): Bid!
 }
 
 type Mutation {

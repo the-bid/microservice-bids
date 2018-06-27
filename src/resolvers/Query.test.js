@@ -21,17 +21,15 @@ describe('Query', () => {
     test('calls db.query.bids with correct arguments and orderBy', async () => {
       expect.assertions(1)
       const args = {
-        userId: casual.uuid,
         auctionId: casual.uuid,
         teamId: casual.uuid
       }
       await highestBid({}, args, context, {})
-      expect(context.db.query.bids).toBeCalledWith({ where: { AND: args }, orderBy: 'amount_DESC' })
+      expect(context.db.query.bids).toBeCalledWith({ where: { AND: args }, orderBy: 'amount_DESC' }, {})
     })
     test('retuns the first bid in the list returned from the db', async () => {
       expect.assertions(1)
       const args = {
-        userId: casual.uuid,
         auctionId: casual.uuid,
         teamId: casual.uuid
       }
@@ -42,7 +40,6 @@ describe('Query', () => {
       context.db.query.bids = jest.fn(() => [])
       expect.assertions(1)
       const args = {
-        userId: casual.uuid,
         auctionId: casual.uuid,
         teamId: casual.uuid
       }

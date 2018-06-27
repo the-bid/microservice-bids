@@ -24,7 +24,7 @@ describe('Schema', () => {
       test('returns a bid', async () => {
         expect.assertions(1)
         const query = `query highestBid{
-          highestBid(auctionId:"${casual.uuid}",teamId:"${casual.uuid}",userId:"${casual.uuid}"){
+          highestBid(auctionId:"${casual.uuid}",teamId:"${casual.uuid}"){
             id
             createdAt
             auctionId
@@ -48,7 +48,6 @@ describe('Schema', () => {
           'errors',
           expect.arrayContaining([
             expect.objectContaining(missingFieldErrorMessage({ method: 'highestBid', field: 'auctionId', type: 'ID' })),
-            expect.objectContaining(missingFieldErrorMessage({ method: 'highestBid', field: 'userId', type: 'ID' })),
             expect.objectContaining(missingFieldErrorMessage({ method: 'highestBid', field: 'teamId', type: 'ID' }))
           ])
         )
