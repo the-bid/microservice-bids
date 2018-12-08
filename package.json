@@ -22,7 +22,7 @@
     "graphql-yoga": "^1.14.8",
     "jsonwebtoken": "^8.2.2",
     "lodash": "^4.17.10",
-    "prisma-binding": "^2.1.0"
+    "prisma-binding": "^2.2.0"
   },
   "devDependencies": {
     "casual": "^1.5.19",
