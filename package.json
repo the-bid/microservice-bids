@@ -19,7 +19,7 @@
   "author": "bialesdaniel@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "^1.14.8",
+    "graphql-yoga": "^1.16.9",
     "jsonwebtoken": "^8.2.2",
     "lodash": "^4.17.10",
     "prisma-binding": "^2.1.0"
