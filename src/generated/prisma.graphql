@@ -1,16 +1,12 @@
-# source: http://localhost:4466/the-bid-bids/local
-# timestamp: Fri Jun 08 2018 11:06:00 GMT-0400 (EDT)
-
 type AggregateBid {
   count: Int!
 }
 
 type BatchPayload {
-  """The number of nodes that have been affected by the Batch operation."""
   count: Long!
 }
 
-type Bid implements Node {
+type Bid {
   id: ID!
   createdAt: DateTime!
   userId: String!
@@ -19,12 +15,8 @@ type Bid implements Node {
   amount: Float!
 }
 
-"""A connection to a list of items."""
 type BidConnection {
-  """Information to aid in pagination."""
   pageInfo: PageInfo!
-
-  """A list of edges."""
   edges: [BidEdge]!
   aggregate: AggregateBid!
 }
@@ -36,12 +28,8 @@ input BidCreateInput {
   amount: Float!
 }
 
-"""An edge in a connection."""
 type BidEdge {
-  """The item at the end of the edge."""
   node: Bid!
-
-  """A cursor for use in pagination."""
   cursor: String!
 }
 
@@ -79,35 +67,14 @@ type BidSubscriptionPayload {
 }
 
 input BidSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [BidSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [BidSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [BidSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
   mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
   updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
   updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
   updatedFields_contains_some: [String!]
   node: BidWhereInput
+  AND: [BidSubscriptionWhereInput!]
+  OR: [BidSubscriptionWhereInput!]
+  NOT: [BidSubscriptionWhereInput!]
 }
 
 input BidUpdateInput {
@@ -117,219 +84,89 @@ input BidUpdateInput {
   amount: Float
 }
 
+input BidUpdateManyMutationInput {
+  userId: String
+  auctionId: String
+  teamId: String
+  amount: Float
+}
+
 input BidWhereInput {
-  """Logical AND on all given filters."""
-  AND: [BidWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [BidWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [BidWhereInput!]
   id: ID
-
-  """All values that are not equal to given value."""
   id_not: ID
-
-  """All values that are contained in given list."""
   id_in: [ID!]
-
-  """All values that are not contained in given list."""
   id_not_in: [ID!]
-
-  """All values less than the given value."""
   id_lt: ID
-
-  """All values less than or equal the given value."""
   id_lte: ID
-
-  """All values greater than the given value."""
   id_gt: ID
-
-  """All values greater than or equal the given value."""
   id_gte: ID
-
-  """All values containing the given string."""
   id_contains: ID
-
-  """All values not containing the given string."""
   id_not_contains: ID
-
-  """All values starting with the given string."""
   id_starts_with: ID
-
-  """All values not starting with the given string."""
   id_not_starts_with: ID
-
-  """All values ending with the given string."""
   id_ends_with: ID
-
-  """All values not ending with the given string."""
   id_not_ends_with: ID
   createdAt: DateTime
-
-  """All values that are not equal to given value."""
   createdAt_not: DateTime
-
-  """All values that are contained in given list."""
   createdAt_in: [DateTime!]
-
-  """All values that are not contained in given list."""
   createdAt_not_in: [DateTime!]
-
-  """All values less than the given value."""
   createdAt_lt: DateTime
-
-  """All values less than or equal the given value."""
   createdAt_lte: DateTime
-
-  """All values greater than the given value."""
   createdAt_gt: DateTime
-
-  """All values greater than or equal the given value."""
   createdAt_gte: DateTime
   userId: String
-
-  """All values that are not equal to given value."""
   userId_not: String
-
-  """All values that are contained in given list."""
   userId_in: [String!]
-
-  """All values that are not contained in given list."""
   userId_not_in: [String!]
-
-  """All values less than the given value."""
   userId_lt: String
-
-  """All values less than or equal the given value."""
   userId_lte: String
-
-  """All values greater than the given value."""
   userId_gt: String
-
-  """All values greater than or equal the given value."""
   userId_gte: String
-
-  """All values containing the given string."""
   userId_contains: String
-
-  """All values not containing the given string."""
   userId_not_contains: String
-
-  """All values starting with the given string."""
   userId_starts_with: String
-
-  """All values not starting with the given string."""
   userId_not_starts_with: String
-
-  """All values ending with the given string."""
   userId_ends_with: String
-
-  """All values not ending with the given string."""
   userId_not_ends_with: String
   auctionId: String
-
-  """All values that are not equal to given value."""
   auctionId_not: String
-
-  """All values that are contained in given list."""
   auctionId_in: [String!]
-
-  """All values that are not contained in given list."""
   auctionId_not_in: [String!]
-
-  """All values less than the given value."""
   auctionId_lt: String
-
-  """All values less than or equal the given value."""
   auctionId_lte: String
-
-  """All values greater than the given value."""
   auctionId_gt: String
-
-  """All values greater than or equal the given value."""
   auctionId_gte: String
-
-  """All values containing the given string."""
   auctionId_contains: String
-
-  """All values not containing the given string."""
   auctionId_not_contains: String
-
-  """All values starting with the given string."""
   auctionId_starts_with: String
-
-  """All values not starting with the given string."""
   auctionId_not_starts_with: String
-
-  """All values ending with the given string."""
   auctionId_ends_with: String
-
-  """All values not ending with the given string."""
   auctionId_not_ends_with: String
   teamId: String
-
-  """All values that are not equal to given value."""
   teamId_not: String
-
-  """All values that are contained in given list."""
   teamId_in: [String!]
-
-  """All values that are not contained in given list."""
   teamId_not_in: [String!]
-
-  """All values less than the given value."""
   teamId_lt: String
-
-  """All values less than or equal the given value."""
   teamId_lte: String
-
-  """All values greater than the given value."""
   teamId_gt: String
-
-  """All values greater than or equal the given value."""
   teamId_gte: String
-
-  """All values containing the given string."""
   teamId_contains: String
-
-  """All values not containing the given string."""
   teamId_not_contains: String
-
-  """All values starting with the given string."""
   teamId_starts_with: String
-
-  """All values not starting with the given string."""
   teamId_not_starts_with: String
-
-  """All values ending with the given string."""
   teamId_ends_with: String
-
-  """All values not ending with the given string."""
   teamId_not_ends_with: String
   amount: Float
-
-  """All values that are not equal to given value."""
   amount_not: Float
-
-  """All values that are contained in given list."""
   amount_in: [Float!]
-
-  """All values that are not contained in given list."""
   amount_not_in: [Float!]
-
-  """All values less than the given value."""
   amount_lt: Float
-
-  """All values less than or equal the given value."""
   amount_lte: Float
-
-  """All values greater than the given value."""
   amount_gt: Float
-
-  """All values greater than or equal the given value."""
   amount_gte: Float
+  AND: [BidWhereInput!]
+  OR: [BidWhereInput!]
+  NOT: [BidWhereInput!]
 }
 
 input BidWhereUniqueInput {
@@ -338,18 +175,14 @@ input BidWhereUniqueInput {
 
 scalar DateTime
 
-"""
-The `Long` scalar type represents non-fractional signed whole numeric values.
-Long can represent values between -(2^63) and 2^63 - 1.
-"""
 scalar Long
 
 type Mutation {
   createBid(data: BidCreateInput!): Bid!
   updateBid(data: BidUpdateInput!, where: BidWhereUniqueInput!): Bid
-  deleteBid(where: BidWhereUniqueInput!): Bid
+  updateManyBids(data: BidUpdateManyMutationInput!, where: BidWhereInput): BatchPayload!
   upsertBid(where: BidWhereUniqueInput!, create: BidCreateInput!, update: BidUpdateInput!): Bid!
-  updateManyBids(data: BidUpdateInput!, where: BidWhereInput): BatchPayload!
+  deleteBid(where: BidWhereUniqueInput!): Bid
   deleteManyBids(where: BidWhereInput): BatchPayload!
 }
 
@@ -359,37 +192,22 @@ enum MutationType {
   DELETED
 }
 
-"""An object with an ID"""
 interface Node {
-  """The id of the object."""
   id: ID!
 }
 
-"""Information about pagination in a connection."""
 type PageInfo {
-  """When paginating forwards, are there more items?"""
   hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
   startCursor: String
-
-  """When paginating forwards, the cursor to continue."""
   endCursor: String
 }
 
 type Query {
-  bids(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bid]!
   bid(where: BidWhereUniqueInput!): Bid
+  bids(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bid]!
   bidsConnection(where: BidWhereInput, orderBy: BidOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BidConnection!
-
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
+  node(id: ID!): Node
 }
 
 type Subscription {

@@ -7,10 +7,10 @@ module.exports = {
   deleteBid
 }
 
-async function createBid(root, { auctionId, teamId, amount }, context, info) {
+async function createBid(root, { auctionId, teamId, amount }, context) {
   const userId = getUserId(context.request)
   try {
-    const previousHighestBid = await highestBid(root, { auctionId, teamId, userId }, context, `{amount}`)
+    const previousHighestBid = await highestBid(root, { auctionId, teamId, userId }, context)
     if (previousHighestBid && amount <= previousHighestBid.amount) {
       throw new Error('Bid amount must be greater than previous bids')
     }
@@ -19,27 +19,22 @@ async function createBid(root, { auctionId, teamId, amount }, context, info) {
       throw e
     }
   }
-  return context.db.mutation.createBid(
-    {
-      data: {
-        auctionId,
-        teamId,
-        userId,
-        amount
-      }
-    },
-    info
-  )
+  return context.prisma.createBid({
+    auctionId,
+    teamId,
+    userId,
+    amount
+  })
 }
 
-async function deleteBid(root, { id }, context, info) {
+async function deleteBid(root, { id }, context) {
   const userId = getUserId(context.request)
-  const bidToDelete = await context.db.query.bid({ where: { id } }, `{userId}`)
+  const bidToDelete = await context.prisma.bid({ id })
   if (!bidToDelete) {
     throw new Error('Bid does not exist')
   }
   if (userId !== bidToDelete.userId) {
     throw new Error('Must have created the bid to delete it')
   }
-  return context.db.mutation.deleteBid({ where: { id } }, info)
+  return context.prisma.deleteBid({ id })
 }

@@ -1,0 +1,12 @@
+datamodel: src/database/datamodel.prisma
+endpoint: ${env:PRISMA_URL}
+secret: ${env:PRISMA_MANAGEMENT_API_SECRET}
+generate:
+  - generator: javascript-client
+    output: ./src/generated
+  - generator: graphql-schema
+    output: ./src/generated
+hooks:
+  post-deploy:
+    - prisma generate
+    - echo "Deployment finished"

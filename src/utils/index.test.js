@@ -20,11 +20,11 @@ describe('Utils', () => {
     })
     test('throws error if the auth header is not a bearer token', () => {
       request.headers.authorization = `Basic ${casual.uuid}`
-      expect(() => getUserId(request)).toThrowError('Authorization header Bearer token required')
+      expect(() => getUserId(request)).toThrow('Authorization header Bearer token required')
     })
     test('throws error if there is no auth header', () => {
       delete request.headers.authorization
-      expect(() => getUserId(request)).toThrowError('Authorization header Bearer token required')
+      expect(() => getUserId(request)).toThrow('Authorization header Bearer token required')
     })
   })
 })

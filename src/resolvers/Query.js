@@ -2,8 +2,8 @@ module.exports = {
   highestBid
 }
 
-async function highestBid(root, { auctionId, teamId }, context, info) {
-  const bids = await context.db.query.bids({ where: { AND: { auctionId, teamId } }, orderBy: 'amount_DESC' }, info)
+async function highestBid(root, { auctionId, teamId }, context) {
+  const bids = await context.prisma.bids({ where: { auctionId, teamId }, orderBy: 'amount_DESC' })
   if (!bids.length) {
     throw new Error('No bids')
   }
