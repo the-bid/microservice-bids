@@ -22,6 +22,7 @@ type BidConnection {
 }
 
 input BidCreateInput {
+  id: ID
   userId: String!
   auctionId: String!
   teamId: String!

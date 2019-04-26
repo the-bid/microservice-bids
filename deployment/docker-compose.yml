@@ -2,7 +2,7 @@
 version: '3'
 services:
   prisma:
-    image: prismagraphql/prisma:1.26
+    image: prismagraphql/prisma:1.31
     restart: always
     ports:
     - "4466:4466"
@@ -18,7 +18,6 @@ services:
             port: 5432
             user: ${POSTGRES_USER}
             password: ${POSTGRES_PASSWORD}
-            migrations: true
   postgres-db:
     image: postgres
     restart: always

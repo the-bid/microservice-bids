@@ -22,6 +22,6 @@ server.start(
   {
     port: PORT
   },
-  () => console.log(`the-bid-auctions is running on port: ${PORT}`)
+  () => console.log(`the-bid-bids is running on port: ${PORT}`)
 )
 /* eslint-enable no-console */

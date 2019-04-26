@@ -9,7 +9,7 @@ const bidObjectTemplate = {
 
 function missingFieldErrorMessage({ method, field, type }) {
   return {
-    message: `Field "${method}" argument "${field}" of type "${type}!" is required but not provided.`
+    message: `Field "${method}" argument "${field}" of type "${type}!" is required, but it was not provided.`
   }
 }
 

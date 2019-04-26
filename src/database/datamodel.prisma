@@ -1,6 +1,6 @@
 type Bid {
-  id: ID! @unique
-  createdAt: DateTime!
+  id: ID! @id
+  createdAt: DateTime! @createdAt
   userId: String!
   auctionId: String!
   teamId: String!
