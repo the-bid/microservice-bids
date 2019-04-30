@@ -53,6 +53,24 @@ describe('Schema', () => {
         )
       })
     })
+    describe('userTotalBids', () => {
+      test('returns a number', async () => {
+        expect.assertions(1)
+        const query = `query userTotalBids{
+          userTotalBids(auctionId:"${casual.uuid}",userId:"${casual.uuid}")
+        }`
+        const { data } = await graphql(schema, query)
+        expect(data.userTotalBids).toEqual(expect.any(Number))
+      })
+      test('returns a number without any argurments', async () => {
+        expect.assertions(1)
+        const query = `query userTotalBids{
+          userTotalBids
+        }`
+        const { data } = await graphql(schema, query)
+        expect(data.userTotalBids).toEqual(expect.any(Number))
+      })
+    })
   })
   describe('Mutation', () => {
     describe('createBid', () => {

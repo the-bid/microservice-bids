@@ -2,6 +2,7 @@
 
 type Query {
   highestBid(auctionId: ID!, teamId: ID!): Bid!
+  userTotalBids(auctionId: ID, userId: String):Float!
 }
 
 type Mutation {
