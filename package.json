@@ -18,8 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "decimal.js": "^10.1.1",
-    "graphql-yoga": "^1.17.4",
-    "jsonwebtoken": "^8.5.1",
+    "graphql-yoga": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.11",
     "prisma-client-lib": "^1.30.2"
   },
